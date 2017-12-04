@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 26
@@ -30,6 +31,9 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile 'com.android.support:design:26.0.0-alpha1'
+    compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
+    compile 'net.idik:slimadapter:2.1.2'//adapter
 }
 repositories {
     mavenCentral()
