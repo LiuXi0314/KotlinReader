@@ -3,7 +3,8 @@ package com.lx.kotlin.reader.fragment
 import android.support.v7.widget.RecyclerView
 import com.lx.kotlin.reader.adapter.AdapterFactory
 import com.lx.kotlin.reader.adapter.helper.AdapterType
-import com.lx.kotlin.reader.model.ZhihuApi
+import com.lx.kotlin.reader.services.ZhihuApi
+import com.lx.kotlin.reader.services.ZhihuCallback
 import com.lx.kotlin.reader.utils.Toaster
 import kotlinx.android.synthetic.main.fragment_recycler.*
 import net.idik.lib.slimadapter.SlimAdapter
@@ -45,7 +46,7 @@ class ZhihuFragment : RecyclerFragment() {
 
     private fun service() {
         var interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        interceptor.level = HttpLoggingInterceptor.Level.BASIC
         var client = OkHttpClient.Builder().addNetworkInterceptor(interceptor).build()
 
         var retrofit = Retrofit.Builder()
@@ -55,7 +56,9 @@ class ZhihuFragment : RecyclerFragment() {
                 .build()
 
         var api = retrofit.create(ZhihuApi::class.java)
-        api.getZhihuData()
+
+        api.getZhihuData().enqueue(ZhihuCallback(mAdapter))
+
 
     }
 

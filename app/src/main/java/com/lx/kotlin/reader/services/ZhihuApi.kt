@@ -1,5 +1,6 @@
-package com.lx.kotlin.reader.model
+package com.lx.kotlin.reader.services
 
+import com.lx.kotlin.reader.model.ZhihuModel
 import retrofit2.Call
 import retrofit2.http.GET
 
@@ -10,7 +11,7 @@ import retrofit2.http.GET
 interface ZhihuApi {
 
     @GET("api/4/theme/10")
-    fun getZhihuData():Call<ZhihuModel>
+    fun getZhihuData():Call<MutableList<ZhihuModel>>
 
 
 

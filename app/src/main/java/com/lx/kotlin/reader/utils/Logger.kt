@@ -6,7 +6,7 @@ import android.util.Log
  * Created on 17-12-4 上午11:28
  */
 object Logger{
-    private val TAG = "READER"
+    private val TAG = "READER_LOG"
 
     fun log(str: String) {
         Log.d(TAG, str)
