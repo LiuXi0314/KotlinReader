@@ -24,6 +24,6 @@
         android:layout_marginTop="@dimen/spacingNormal"
         android:ellipsize="end"
         android:lineSpacingMultiplier="1.1"
-        android:maxLines="3"/>
+        android:maxLines="5"/>
 
 </LinearLayout>

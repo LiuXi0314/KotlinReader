@@ -9,7 +9,7 @@ import android.widget.TextView
 /**
  * Created on 17-12-4 下午2:42
  */
-class OneFragment : BaseFragment() {
+class DoubanFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var text = TextView(context)
         text.setText(arguments.getString("title"))

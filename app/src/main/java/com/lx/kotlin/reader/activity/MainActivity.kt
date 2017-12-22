@@ -4,10 +4,9 @@ import android.os.Bundle
 import com.lx.kotlin.reader.R
 import com.lx.kotlin.reader.adapter.FragmentAdapter
 import com.lx.kotlin.reader.fragment.BaseFragment
+import com.lx.kotlin.reader.fragment.DoubanFragment
 import com.lx.kotlin.reader.fragment.ImageFragment
-import com.lx.kotlin.reader.fragment.OneFragment
 import com.lx.kotlin.reader.fragment.ZhihuFragment
-import com.lx.kotlin.reader.utils.log
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -16,7 +15,6 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        log("main activity")
         setContentView(R.layout.activity_main)
         initView()
     }
@@ -31,9 +29,9 @@ class MainActivity : BaseActivity() {
         zhihu.arguments = zhihuBundle
         pageList.add(zhihu)
 
-        var one = OneFragment()
+        var one = DoubanFragment()
         var oneBundle = Bundle()
-        oneBundle.putString("title", "一个")
+        oneBundle.putString("title", "豆瓣")
         one.arguments = oneBundle
         pageList.add(one)
 

@@ -7,15 +7,14 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.lx.kotlin.reader.R
-import com.lx.kotlin.reader.utils.log
-
+import com.lx.kotlin.reader.utils.Logger
 
 
 open class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        log(localClassName)
+        Logger.log(localClassName)
         //设置状态栏颜色
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
