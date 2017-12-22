@@ -8,4 +8,28 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/textNormal</item>
+    </style>
+
+    <style name="TextStyle.Black" parent="TextStyle">
+        <item name="android:textColor">@color/colorTextBlack</item>
+    </style>
+
+    <style name="TextStyle.Black.Large" parent="TextStyle.Black">
+        <item name="android:textColor">@color/colorTextBlack</item>
+        <item name="android:textSize">@dimen/textLarge</item>
+    </style>
+
+    <style name="TextStyle.Gray" parent="TextStyle">
+        <item name="android:textColor">@color/colorTextHint</item>
+    </style>
+
+    <style name="TextStyle.Gray.Small" parent="TextStyle.Gray">
+        <item name="android:textColor">@color/colorTextHint</item>
+        <item name="android:textSize">@dimen/textSmall</item>
+    </style>
+
 </resources>

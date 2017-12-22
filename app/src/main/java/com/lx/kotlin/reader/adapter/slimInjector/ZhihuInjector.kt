@@ -11,6 +11,7 @@ import net.idik.lib.slimadapter.viewinjector.IViewInjector
 class ZhihuInjector : SlimInjector<ZhihuModel> {
     override fun onInject(data: ZhihuModel?, injector: IViewInjector<out IViewInjector<*>>?) {
         injector!!.text(R.id.name, data!!.name)
+        injector!!.text(R.id.content, data!!.content)
     }
 
 }

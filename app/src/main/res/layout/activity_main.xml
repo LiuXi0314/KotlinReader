@@ -20,8 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             app:titleTextColor="@color/colorAccent"
-            android:titleTextColor="@color/colorAccent"
-            app:layout_scrollFlags="scroll|enterAlways">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
         </android.support.v7.widget.Toolbar>
 
@@ -29,10 +28,9 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabTextColor="@color/colorWhite"
-            app:tabSelectedTextColor="@color/colorAccent"
-            app:tabIndicatorColor="@color/colorAccent"/>
-
+            app:tabTextColor="@color/colorTextHint"
+            app:tabSelectedTextColor="@color/colorTextBlack"
+            app:tabIndicatorColor="@color/colorTextBlack"/>
 
     </android.support.design.widget.AppBarLayout>
 
