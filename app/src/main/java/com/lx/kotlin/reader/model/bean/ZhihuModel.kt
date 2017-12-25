@@ -1,4 +1,4 @@
-package com.lx.kotlin.reader.model
+package com.lx.kotlin.reader.model.bean
 
 /**
  *  数据类是一种非常强大的类，它可以让你避免创建Java中的用于保存状态但又操作非常简单的POJO的模版代码。

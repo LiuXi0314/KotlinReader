@@ -13,7 +13,7 @@ import net.idik.lib.slimadapter.SlimAdapter
 /**
  * Created on 17-12-22 下午1:49
  */
-abstract class RecyclerFragment : BaseFragment() ,View.OnClickListener{
+abstract class RecyclerFragment : BaseFragment(), View.OnClickListener {
 
     var mAdapter: SlimAdapter? = null
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -32,7 +32,9 @@ abstract class RecyclerFragment : BaseFragment() ,View.OnClickListener{
         swipeRefresh.setColorSchemeResources(R.color.colorBlack)
     }
 
-    abstract fun createLayoutManager(): RecyclerView.LayoutManager?
+    fun createLayoutManager(): RecyclerView.LayoutManager? {
+        return null
+    }
 
     abstract fun createAdapter(): SlimAdapter?
 

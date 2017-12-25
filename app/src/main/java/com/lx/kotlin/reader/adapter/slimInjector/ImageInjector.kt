@@ -1,7 +1,7 @@
 package com.lx.kotlin.reader.adapter.slimInjector
 
 import com.lx.kotlin.reader.R
-import com.lx.kotlin.reader.model.ZhihuModel
+import com.lx.kotlin.reader.model.bean.ZhihuModel
 import net.idik.lib.slimadapter.SlimInjector
 import net.idik.lib.slimadapter.viewinjector.IViewInjector
 

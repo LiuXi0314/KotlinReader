@@ -1,15 +1,17 @@
 package com.lx.kotlin.reader.fragment
 
-import android.support.v7.widget.RecyclerView
-import com.lx.kotlin.reader.adapter.AdapterFactory
-import com.lx.kotlin.reader.adapter.helper.AdapterType
-import com.lx.kotlin.reader.services.ZhihuApi
-import com.lx.kotlin.reader.services.ZhihuCallback
-import com.lx.kotlin.reader.utils.Toaster
-import kotlinx.android.synthetic.main.fragment_recycler.*
+import com.lx.kotlin.reader.R
+import com.lx.kotlin.reader.adapter.slimInjector.ZhihuInjector
+import com.lx.kotlin.reader.model.api.BaseUrl
+import com.lx.kotlin.reader.model.api.ZhihuApi
+import com.lx.kotlin.reader.model.bean.Theme
+import com.lx.kotlin.reader.utils.Logger
 import net.idik.lib.slimadapter.SlimAdapter
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -20,11 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ZhihuFragment : RecyclerFragment() {
 
     override fun createAdapter(): SlimAdapter? {
-        return AdapterFactory().create(AdapterType.TYPE_ZHIHU)
-    }
-
-    override fun createLayoutManager(): RecyclerView.LayoutManager? {
-        return null
+        return SlimAdapter.create().register(R.layout.item_zhihu,ZhihuInjector(context))
     }
 
     override fun onResume() {
@@ -32,34 +30,32 @@ class ZhihuFragment : RecyclerFragment() {
         loadData()
     }
 
-
     override fun loadData() {
-
-        android.os.Handler().postDelayed(
-                {
-                    Toaster.show(context, "加载中")
-                    swipeRefresh.isRefreshing = false;
-                }, 1000)
-        service()
-
-    }
-
-    private fun service() {
         var interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BASIC
         var client = OkHttpClient.Builder().addNetworkInterceptor(interceptor).build()
 
         var retrofit = Retrofit.Builder()
-                .baseUrl("https://news-at.zhihu.com/")
+                .baseUrl(BaseUrl.ZHIHU_HEADER)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
 
         var api = retrofit.create(ZhihuApi::class.java)
 
-        api.getZhihuData().enqueue(ZhihuCallback(mAdapter))
+        api.getZhihuData().enqueue(object : Callback<Theme> {
+            override fun onFailure(call: Call<Theme>?, t: Throwable?) {
+                Logger.log("failure")
+                Logger.log(t.toString())
+            }
 
-
+            override fun onResponse(call: Call<Theme>?, response: Response<Theme>?) {
+                Logger.log("success"+  response!!.body()!!.toString())
+                mAdapter!!.updateData(response.body()!!.others)
+                Logger.log("success")
+            }
+        })
     }
+
 
 }
