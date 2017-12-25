@@ -1,8 +1,10 @@
 package com.lx.kotlin.reader.model.api
 
+import com.lx.kotlin.reader.model.bean.DailyList
 import com.lx.kotlin.reader.model.bean.Theme
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 
 /**
@@ -10,9 +12,10 @@ import retrofit2.http.GET
  */
 interface ZhihuApi {
 
-    @GET("api/4/themes")
-    fun getZhihuData():Call<Theme>
+    @GET(ApiConstance.BODY_ZHIHU_THEME)
+    fun getZhihuTheme(): Call<Theme>
 
-
+    @GET("api/4/theme/{id}")
+    fun getZhihuThemeDetail(@Path("id") id: String): Call<DailyList>
 
 }
