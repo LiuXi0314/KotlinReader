@@ -6,7 +6,7 @@ import com.lx.kotlin.reader.adapter.FragmentAdapter
 import com.lx.kotlin.reader.fragment.BaseFragment
 import com.lx.kotlin.reader.fragment.DoubanFragment
 import com.lx.kotlin.reader.fragment.ImageFragment
-import com.lx.kotlin.reader.fragment.ZhihuFragment
+import com.lx.kotlin.reader.fragment.ZhihuThemeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -23,7 +23,7 @@ class MainActivity : BaseActivity() {
         toolbar.setTitle(R.string.app_name)
         pageList.clear()
 
-        var zhihu = ZhihuFragment()
+        var zhihu = ZhihuThemeFragment()
         var zhihuBundle = Bundle()
         zhihuBundle.putString("title", "知乎日报")
         zhihu.arguments = zhihuBundle

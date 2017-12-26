@@ -16,6 +16,6 @@ interface ZhihuApi {
     fun getZhihuTheme(): Call<Theme>
 
     @GET("api/4/theme/{id}")
-    fun getZhihuThemeDetail(@Path("id") id: String): Call<DailyList>
+    fun getZhihuThemeDetail(@Path("id") id: Int): Call<DailyList>
 
 }

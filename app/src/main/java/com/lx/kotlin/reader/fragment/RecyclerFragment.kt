@@ -27,9 +27,8 @@ abstract class RecyclerFragment : BaseFragment(), View.OnClickListener {
             recyclerView.layoutManager = LinearLayoutManager(context)
         }
         mAdapter = createAdapter();
-        recyclerView.adapter = mAdapter
+        mAdapter!!.attachTo(recyclerView)
         swipeRefresh.setOnRefreshListener { loadData() }
-        swipeRefresh.setColorSchemeResources(R.color.colorBlack)
     }
 
     fun createLayoutManager(): RecyclerView.LayoutManager? {

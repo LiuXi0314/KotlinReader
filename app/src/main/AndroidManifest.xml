@@ -20,7 +20,7 @@
         </activity>
         <activity android:name=".activity.BaseActivity">
         </activity>
-        <activity android:name=".activity.RecrclyerActivity">
+        <activity android:name=".activity.DailyListActivity">
         </activity>
     </application>
 

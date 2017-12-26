@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginLeft="@dimen/spacingNormal"
-              android:layout_marginRight="@dimen/spacingNormal"
-              android:layout_marginTop="@dimen/spacingNormal"
-              android:background="@color/colorWhite"
-              android:elevation="@dimen/spacingXSmall"
-              android:orientation="horizontal"
-              android:padding="@dimen/spacingNormal">
+    android:id="@+id/itemContent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/spacingNormal"
+    android:layout_marginRight="@dimen/spacingNormal"
+    android:layout_marginTop="@dimen/spacingNormal"
+    android:background="@color/colorWhite"
+    android:elevation="@dimen/spacingXSmall"
+    android:orientation="horizontal"
+    android:padding="@dimen/spacingNormal">
 
     <ImageView
         android:id="@+id/image"
         android:layout_width="80dp"
-        android:layout_height="80dp"/>
+        android:layout_height="80dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
             android:ellipsize="end"
             android:lineSpacingMultiplier="1.3"
             android:maxLines="2"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/content"
@@ -35,7 +36,7 @@
             android:layout_marginTop="@dimen/spacingNormal"
             android:ellipsize="end"
             android:lineSpacingMultiplier="1.1"
-            android:maxLines="5"/>
+            android:maxLines="5" />
     </LinearLayout>
 
 </LinearLayout>
