@@ -12,13 +12,13 @@ class DailyList {
     var name: String? = null
     var image: String? = null
     var image_source: String? = null
-    var stories: List<StoriesInfo>? = null
+    var stories: MutableList<StoriesInfo>? = null
     var editors: List<*>? = null
 
     class StoriesInfo {
         var type: Int = 0
         var id: Int = 0
         var title: String? = null
-        var images: List<String>? = null
+        var images: MutableList<String>? = null
     }
 }

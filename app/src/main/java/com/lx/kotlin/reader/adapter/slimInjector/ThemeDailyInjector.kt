@@ -15,7 +15,9 @@ class ThemeDailyInjector(private var context: Context) : SlimInjector<DailyList.
     override fun onInject(data: DailyList.StoriesInfo?, injector: IViewInjector<out IViewInjector<*>>?) {
         Logger.log(data.toString())
         injector!!.text(R.id.name, data!!.title)
-        Glide.with(context).load(data.images!!.get(0))
-                .crossFade().into(injector.findViewById(R.id.image))
+
+        var url:String? = data.images!!.first()
+
+        Glide.with(context).load(url).crossFade().into(injector.findViewById(R.id.image))
     }
 }

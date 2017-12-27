@@ -6,7 +6,7 @@ package com.lx.kotlin.reader.model.bean
 
 class Theme {
 
-    var others: List<OthersInfo>? = null
+    var others: MutableList<OthersInfo>? = null
 
     class OthersInfo {
         var color: Int = 0
