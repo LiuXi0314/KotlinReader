@@ -1,6 +1,7 @@
 package com.lx.kotlin.reader.model.api
 
 import com.lx.kotlin.reader.model.bean.DailyList
+import com.lx.kotlin.reader.model.bean.News
 import com.lx.kotlin.reader.model.bean.Theme
 import retrofit2.Call
 import retrofit2.http.GET
@@ -18,4 +19,6 @@ interface ZhihuApi {
     @GET("api/4/theme/{id}")
     fun getZhihuThemeDetail(@Path("id") id: Int): Call<DailyList>
 
+    @GET("api/4/news/{id}")
+    fun getZhihuNews(@Path("id")id:Int):Call<News>
 }

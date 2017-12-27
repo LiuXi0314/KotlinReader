@@ -22,6 +22,9 @@
         </activity>
         <activity android:name=".activity.DailyListActivity">
         </activity>
+
+        <activity android:name=".activity.NewsActivity">
+        </activity>
     </application>
 
 </manifest>
