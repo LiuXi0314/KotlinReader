@@ -1,6 +1,7 @@
 package com.lx.kotlin.reader.model.bean
 
 /**
+ * 故事/消息详情
  * Created by liuxi on 2017/12/27.
  */
 

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.lx.kotlin.reader.R
 import com.lx.kotlin.reader.adapter.slimInjector.ThemeDailyInjector
-import com.lx.kotlin.reader.model.bean.DailyList
+import com.lx.kotlin.reader.model.bean.ThemeChildList
 import com.lx.kotlin.reader.model.service.ServiceFactory
 import com.lx.kotlin.reader.utils.Logger
 import kotlinx.android.synthetic.main.activity_daily_list.*
@@ -42,13 +42,13 @@ class DailyListActivity : BaseActivity() {
     private fun loadData() {
         var id = intent.getIntExtra("id", 0)
         var api = ServiceFactory.getZhihuService()
-        api.getZhihuThemeDetail(id).enqueue(object : Callback<DailyList> {
-            override fun onFailure(call: Call<DailyList>?, t: Throwable?) {
+        api.getZhihuThemeDetail(id).enqueue(object : Callback<ThemeChildList> {
+            override fun onFailure(call: Call<ThemeChildList>?, t: Throwable?) {
                 swipeRefresh.isRefreshing = false
                 Logger.log("get daily failed")
             }
 
-            override fun onResponse(call: Call<DailyList>?, response: Response<DailyList>?) {
+            override fun onResponse(call: Call<ThemeChildList>?, response: Response<ThemeChildList>?) {
                 Logger.log("get daily sucess")
                 adapter!!.updateData(response!!.body().stories)
                 swipeRefresh.isRefreshing = false

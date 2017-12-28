@@ -1,10 +1,11 @@
 package com.lx.kotlin.reader.model.bean
 
 /**
+ * 知乎主题列表
  * Created on 17-12-25 上午11:05
  */
 
-class Theme {
+class ThemeList {
 
     var others: MutableList<OthersInfo>? = null
 

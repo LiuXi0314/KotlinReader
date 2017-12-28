@@ -1,10 +1,11 @@
 package com.lx.kotlin.reader.model.bean
 
 /**
+ * 知乎主题子列表
  * Created on 17-12-25 上午11:33
  */
 
-class DailyList {
+class ThemeChildList {
 
     var description: String? = null
     var background: String? = null
@@ -15,10 +16,4 @@ class DailyList {
     var stories: MutableList<StoriesInfo>? = null
     var editors: List<*>? = null
 
-    class StoriesInfo {
-        var type: Int = 0
-        var id: Int = 0
-        var title: String? = null
-        var images: MutableList<String>? = null
-    }
 }

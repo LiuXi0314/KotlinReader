@@ -2,7 +2,7 @@ package com.lx.kotlin.reader.fragment
 
 import com.lx.kotlin.reader.R
 import com.lx.kotlin.reader.adapter.slimInjector.ZhihuThemeInjector
-import com.lx.kotlin.reader.model.bean.Theme
+import com.lx.kotlin.reader.model.bean.ThemeList
 import com.lx.kotlin.reader.model.service.ServiceFactory
 import com.lx.kotlin.reader.utils.Logger
 import kotlinx.android.synthetic.main.fragment_recycler.*
@@ -29,13 +29,13 @@ class ZhihuThemeFragment : RecyclerFragment() {
     override fun loadData() {
 
         var api = ServiceFactory.getZhihuService()
-        api.getZhihuTheme().enqueue(object : Callback<Theme> {
-            override fun onFailure(call: Call<Theme>?, t: Throwable?) {
+        api.getZhihuTheme().enqueue(object : Callback<ThemeList> {
+            override fun onFailure(call: Call<ThemeList>?, t: Throwable?) {
                 Logger.log("failure")
                 Logger.log(t.toString())
                 swipeRefresh.isRefreshing = false
             }
-            override fun onResponse(call: Call<Theme>?, response: Response<Theme>?) {
+            override fun onResponse(call: Call<ThemeList>?, response: Response<ThemeList>?) {
                 swipeRefresh.isRefreshing = false
                 Logger.log("success"+  response!!.body()!!.toString())
                 mAdapter!!.updateData(response.body()!!.others)

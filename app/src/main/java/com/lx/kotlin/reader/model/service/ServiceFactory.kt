@@ -11,6 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  * Created on 17-12-25 上午11:39
  */
 object ServiceFactory {
+
     fun getClient():OkHttpClient{
         var interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BASIC
