@@ -12,16 +12,13 @@
         android:background="@color/colorWhite">
 
     </android.support.v7.widget.Toolbar>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="none">
-    <TextView
-        android:id="@+id/content"
+
+    <WebView
+        android:id="@+id/webView"
         style="@style/TextStyle.Black"
         android:padding="@dimen/spacingLarge"
         android:lineSpacingMultiplier="1.2"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-</ScrollView>
+
 </LinearLayout>

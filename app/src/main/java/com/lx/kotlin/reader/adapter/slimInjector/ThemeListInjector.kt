@@ -5,7 +5,7 @@ import android.content.Intent
 import com.bumptech.glide.Glide
 import com.lx.kotlin.reader.R
 import com.lx.kotlin.reader.activity.NewsActivity
-import com.lx.kotlin.reader.model.bean.ThemeChildList
+import com.lx.kotlin.reader.model.bean.StoriesInfo
 import com.lx.kotlin.reader.utils.Logger
 import net.idik.lib.slimadapter.SlimInjector
 import net.idik.lib.slimadapter.viewinjector.IViewInjector
@@ -13,8 +13,8 @@ import net.idik.lib.slimadapter.viewinjector.IViewInjector
 /**
  * Created by liuxi on 2017/12/26.
  */
-class ThemeDailyInjector(private var context: Context) : SlimInjector<ThemeChildList.StoriesInfo>{
-    override fun onInject(data: ThemeChildList.StoriesInfo?, injector: IViewInjector<out IViewInjector<*>>?) {
+class ThemeListInjector(private var context: Context) : SlimInjector<StoriesInfo>{
+    override fun onInject(data: StoriesInfo?, injector: IViewInjector<out IViewInjector<*>>?) {
         Logger.log(data.toString())
         injector!!.text(R.id.name, data!!.title)
         Glide.with(context).load(data.images?.first()).crossFade().into(injector.findViewById(R.id.image))

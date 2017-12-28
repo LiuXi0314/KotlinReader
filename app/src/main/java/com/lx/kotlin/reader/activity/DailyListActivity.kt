@@ -3,7 +3,7 @@ package com.lx.kotlin.reader.activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.lx.kotlin.reader.R
-import com.lx.kotlin.reader.adapter.slimInjector.ThemeDailyInjector
+import com.lx.kotlin.reader.adapter.slimInjector.ThemeListInjector
 import com.lx.kotlin.reader.model.bean.ThemeChildList
 import com.lx.kotlin.reader.model.service.ServiceFactory
 import com.lx.kotlin.reader.utils.Logger
@@ -26,7 +26,7 @@ class DailyListActivity : BaseActivity() {
         var title = intent.getStringExtra("title")
         toolbar.setTitle(title)
         setSupportActionBar(toolbar)
-        toolbar.setNavigationIcon(R.drawable.abc_ic_arrow_drop_right_black_24dp)
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_36dp)
         toolbar.setNavigationOnClickListener { finish() }
         initView()
         loadData()
@@ -35,7 +35,7 @@ class DailyListActivity : BaseActivity() {
     private fun initView() {
         swipeRefresh.setOnRefreshListener { loadData() }
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = SlimAdapter.create().register(R.layout.item_zhihu_theme, ThemeDailyInjector(this)).attachTo(recyclerView)
+        adapter = SlimAdapter.create().register(R.layout.item_zhihu_theme, ThemeListInjector(this)).attachTo(recyclerView)
 
     }
 

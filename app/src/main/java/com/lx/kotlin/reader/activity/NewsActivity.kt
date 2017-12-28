@@ -1,10 +1,10 @@
 package com.lx.kotlin.reader.activity
 
 import android.os.Bundle
-import android.text.Html
 import com.lx.kotlin.reader.R
 import com.lx.kotlin.reader.model.bean.News
 import com.lx.kotlin.reader.model.service.ServiceFactory
+import com.lx.kotlin.reader.utils.HtmlUtils
 import com.lx.kotlin.reader.utils.Logger
 import kotlinx.android.synthetic.main.activity_news.*
 import retrofit2.Call
@@ -12,6 +12,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 /**
+ * 故事/消息详情页面
+ *
  * Created by liuxi on 2017/12/27.
  */
 class NewsActivity : BaseActivity() {
@@ -22,7 +24,7 @@ class NewsActivity : BaseActivity() {
         var title = intent.getStringExtra("title")
         toolbar.setTitle(title)
         setSupportActionBar(toolbar)
-        toolbar.setNavigationIcon(R.drawable.abc_ic_arrow_drop_right_black_24dp)
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_36dp)
         toolbar.setNavigationOnClickListener { finish() }
         loadData()
     }
@@ -38,8 +40,9 @@ class NewsActivity : BaseActivity() {
 
             override fun onResponse(call: Call<News>?, response: Response<News>?) {
                 Logger.log("get news sucess")
-                toolbar.setTitle(response?.body()?.title)
-                content.setText(Html.fromHtml(response?.body()?.body))
+                var news = response!!.body()
+                toolbar.setTitle(news!!.title)
+                webView.loadData(HtmlUtils.structHtml(news?.body.toString(), news.css!!), "text/html; charset=UTF-8", null)
             }
         })
     }

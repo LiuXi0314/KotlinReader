@@ -12,15 +12,13 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_scrollFlags="scroll|enterAlways">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            app:titleTextColor="@color/colorAccent"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
+            app:titleTextColor="@color/colorAccent">
 
         </android.support.v7.widget.Toolbar>
 

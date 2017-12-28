@@ -3,11 +3,12 @@ package com.lx.kotlin.reader.activity
 import android.os.Bundle
 import com.lx.kotlin.reader.R
 import com.lx.kotlin.reader.adapter.FragmentAdapter
-import com.lx.kotlin.reader.fragment.BaseFragment
-import com.lx.kotlin.reader.fragment.DoubanFragment
-import com.lx.kotlin.reader.fragment.ImageFragment
-import com.lx.kotlin.reader.fragment.ZhihuThemeFragment
+import com.lx.kotlin.reader.fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
+
+/**
+ *首页
+ */
 
 class MainActivity : BaseActivity() {
 
@@ -23,11 +24,19 @@ class MainActivity : BaseActivity() {
         toolbar.setTitle(R.string.app_name)
         pageList.clear()
 
+        var zhihuDaily = ZhihuDailyFragment()
+        var zhihuDailyBundle = Bundle()
+        zhihuDailyBundle.putString("title", "知乎日报")
+        zhihuDaily.arguments = zhihuDailyBundle
+        pageList.add(zhihuDaily)
+
         var zhihu = ZhihuThemeFragment()
         var zhihuBundle = Bundle()
-        zhihuBundle.putString("title", "知乎日报")
+        zhihuBundle.putString("title", "知乎主题")
         zhihu.arguments = zhihuBundle
         pageList.add(zhihu)
+
+
 
         var one = DoubanFragment()
         var oneBundle = Bundle()
