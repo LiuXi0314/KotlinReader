@@ -2,14 +2,11 @@ package com.lx.kotlin.reader.fragment
 
 import android.os.Bundle
 import android.view.View
-import com.lx.kotlin.reader.R
-import com.lx.kotlin.reader.adapter.slimInjector.ZhihuThemeInjector
 import com.lx.kotlin.reader.model.bean.ThemeList
 import com.lx.kotlin.reader.model.service.ServiceFactory
 import com.lx.kotlin.reader.utils.Logger
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
 import kotlinx.android.synthetic.main.fragment_recycler.*
-import net.idik.lib.slimadapter.SlimAdapter
-import net.idik.lib.slimadapter.ex.loadmore.SlimMoreLoader
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,23 +16,9 @@ import retrofit2.Response
  */
 class ZhihuDailyFragment : RecyclerFragment() {
 
-    override fun createMoreLoader(): SlimMoreLoader? {
-        return object :SlimMoreLoader(context){
-            override fun hasMore(): Boolean {
-                return true
-            }
-
-            override fun onLoadMore(handler: Handler?) {
-               Logger.log("load more")
-            }
-
-        }
-
-    }
-
-
-    override fun createAdapter(): SlimAdapter? {
-        return SlimAdapter.create().register(R.layout.item_zhihu_theme, ZhihuThemeInjector(context))
+    override fun createAdapter(): MultiItemTypeAdapter<Any>? {
+//        return SlimAdapter.create().register(R.layout.item_zhihu_theme, ZhihuThemeInjector(context))
+        return null
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -55,7 +38,7 @@ class ZhihuDailyFragment : RecyclerFragment() {
             override fun onResponse(call: Call<ThemeList>?, response: Response<ThemeList>?) {
                 swipeRefresh.isRefreshing = false
                 Logger.log("success" + response!!.body()!!.toString())
-                mAdapter!!.updateData(response.body()!!.others)
+//                mAdapter!!.updateData(response.body()!!.others)
                 Logger.log("success")
 
             }

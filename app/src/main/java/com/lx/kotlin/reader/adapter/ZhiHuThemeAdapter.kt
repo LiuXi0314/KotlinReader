@@ -1,6 +1,7 @@
 package com.lx.kotlin.reader.adapter
 
 import android.content.Context
+import android.widget.TextView
 import com.lx.kotlin.reader.R
 import com.lx.kotlin.reader.model.bean.ThemeList
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
@@ -16,10 +17,11 @@ class ZhiHuThemeAdapter(context: Context, datas: MutableList<ThemeList.OthersInf
         addItemViewDelegate(ThemeItem(context))
     }
 
-    private class ThemeItem(context: Context) :ItemViewDelegate<ThemeList.OthersInfo>{
-
-        override fun convert(holder: ViewHolder?, t: ThemeList.OthersInfo?, position: Int) {
-
+    private class ThemeItem(val context: Context) : ItemViewDelegate<ThemeList.OthersInfo> {
+        override fun convert(holder: ViewHolder?, data: ThemeList.OthersInfo?, position: Int) {
+            holder?.getView<TextView>(R.id.name)?.text = data?.name
+            holder?.getView<TextView>(R.id.content)?.text = data?.description
+//            Glide.with(context).load(data?.thumbnail).crossFade().into(holder?.getView(R.id.image))
         }
 
         override fun isForViewType(item: ThemeList.OthersInfo?, position: Int): Boolean {
