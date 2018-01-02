@@ -8,6 +8,7 @@ import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
 import com.zhy.adapter.recyclerview.base.ItemViewDelegate
 import com.zhy.adapter.recyclerview.base.ViewHolder
 
+
 /**
  * Created on 17-12-28 下午4:50
  */

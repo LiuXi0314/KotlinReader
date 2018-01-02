@@ -21,33 +21,34 @@ import retrofit2.Response
  */
 class ZhihuThemeFragment : RecyclerFragment() {
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        loadData()
-    }
 
-    override fun createAdapter(): MultiItemTypeAdapter<Any>? {
-        return ZhiHuThemeAdapter(this,data)
-    }
-
-    override fun loadData() {
-
-        var api = ServiceFactory.getZhihuService()
-        api.getZhihuTheme().enqueue(object : Callback<ThemeList> {
-            override fun onFailure(call: Call<ThemeList>?, t: Throwable?) {
-                Logger.log("failure")
-                Logger.log(t.toString())
-                swipeRefresh.isRefreshing = false
-            }
-            override fun onResponse(call: Call<ThemeList>?, response: Response<ThemeList>?) {
-                swipeRefresh.isRefreshing = false
-                Logger.log("success"+  response!!.body()!!.toString())
-//                data?.aa(response.body()?.others)
-//                mAdapter!!.updateData(response.body()!!.others)
-                Logger.log("success")
-            }
-        })
-    }
+//    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//        loadData()
+//    }
+//
+//    override fun createAdapter(): MultiItemTypeAdapter<Any>? {
+//        return ZhiHuThemeAdapter(this,data)
+//    }
+//
+//    override fun loadData() {
+//
+//        var api = ServiceFactory.getZhihuService()
+//        api.getZhihuTheme().enqueue(object : Callback<ThemeList> {
+//            override fun onFailure(call: Call<ThemeList>?, t: Throwable?) {
+//                Logger.log("failure")
+//                Logger.log(t.toString())
+//                swipeRefresh.isRefreshing = false
+//            }
+//            override fun onResponse(call: Call<ThemeList>?, response: Response<ThemeList>?) {
+//                swipeRefresh.isRefreshing = false
+//                Logger.log("success"+  response!!.body()!!.toString())
+////                data?.aa(response.body()?.others)
+////                mAdapter!!.updateData(response.body()!!.others)
+//                Logger.log("success")
+//            }
+//        })
+//    }
 
 
 

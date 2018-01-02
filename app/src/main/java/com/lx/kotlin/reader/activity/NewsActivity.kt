@@ -34,7 +34,6 @@ class NewsActivity : BaseActivity() {
         var api = ServiceFactory.getZhihuService()
         api.getZhihuNews(id).enqueue(object : Callback<News> {
             override fun onFailure(call: Call<News>?, t: Throwable?) {
-
                 Logger.log("get news failed")
             }
 
