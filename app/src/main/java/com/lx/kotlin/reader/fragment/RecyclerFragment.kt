@@ -40,20 +40,31 @@ abstract class RecyclerFragment<T> : BaseFragment(),View.OnClickListener,MultiIt
         headerAndFooterWrapper = HeaderAndFooterWrapper(adapter)
         loadMoreWrapper = LoadMoreWrapper(headerAndFooterWrapper)
         loadMoreWrapper!!.setOnLoadMoreListener { loadData() }
-        recyclerView.adapter = adapter
+        loadMoreWrapper!!.setLoadMoreView(createLoadMoreViewId())
+        recyclerView.adapter = loadMoreWrapper
 
         swipeRefresh.setOnRefreshListener { loadData() }
+        swipeRefresh.setColorSchemeResources(R.color.colorOrange,R.color.colorGreen,R.color.colorBlueGreen)
     }
 
-    abstract fun createLayoutManager(): RecyclerView.LayoutManager?
+    open fun createLayoutManager(): RecyclerView.LayoutManager?{
+        return null
+    }
 
     abstract fun createAdapter(): MultiItemTypeAdapter<T>
 
     abstract fun loadData()
 
-     fun loadMore(){
+    open fun loadMore(){
 
      }
+
+    /**
+     * 想要加载更多必须设置loadMoreViewId
+     */
+   open fun createLoadMoreViewId():Int{
+        return 0
+    }
 
     fun refreshLoad(){
         swipeRefresh.isRefreshing = true

@@ -5,7 +5,7 @@ import android.content.Intent
 import android.view.View
 import com.bumptech.glide.Glide
 import com.lx.kotlin.reader.R
-import com.lx.kotlin.reader.activity.DailyListActivity
+import com.lx.kotlin.reader.activity.ZhihuThemeChildActivity
 import com.lx.kotlin.reader.model.bean.ThemeList
 import net.idik.lib.slimadapter.SlimInjector
 import net.idik.lib.slimadapter.viewinjector.IViewInjector
@@ -21,7 +21,7 @@ class ZhihuThemeInjector(private var context: Context) : SlimInjector<ThemeList.
         Glide.with(context).load(data!!.thumbnail).crossFade().into(injector.findViewById(R.id.image))
         injector.clicked(R.id.itemContent,object : View.OnClickListener{
             override fun onClick(v: View?) {
-                var intent= Intent().setClass(context, DailyListActivity::class.java)
+                var intent= Intent().setClass(context, ZhihuThemeChildActivity::class.java)
                 intent.putExtra("title",data!!.name)
                         .putExtra("id",data!!.id)
                 context.startActivity(intent)

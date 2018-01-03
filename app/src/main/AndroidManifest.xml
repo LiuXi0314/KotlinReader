@@ -20,7 +20,7 @@
         </activity>
         <activity android:name=".activity.BaseActivity">
         </activity>
-        <activity android:name=".activity.DailyListActivity">
+        <activity android:name=".activity.ZhihuThemeChildActivity">
         </activity>
 
         <activity android:name=".activity.NewsActivity">

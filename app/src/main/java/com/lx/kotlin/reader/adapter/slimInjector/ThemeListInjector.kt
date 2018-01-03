@@ -2,6 +2,7 @@ package com.lx.kotlin.reader.adapter.slimInjector
 
 import android.content.Context
 import android.content.Intent
+import android.view.View
 import com.bumptech.glide.Glide
 import com.lx.kotlin.reader.R
 import com.lx.kotlin.reader.activity.NewsActivity

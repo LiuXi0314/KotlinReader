@@ -7,7 +7,7 @@ import com.lx.kotlin.reader.adapter.slimInjector.ThemeListInjector
 import com.lx.kotlin.reader.model.bean.ThemeChildList
 import com.lx.kotlin.reader.model.service.ServiceFactory
 import com.lx.kotlin.reader.utils.Logger
-import kotlinx.android.synthetic.main.activity_daily_list.*
+import kotlinx.android.synthetic.main.activity_zhihu_theme_child.*
 import kotlinx.android.synthetic.main.fragment_recycler.*
 import net.idik.lib.slimadapter.SlimAdapter
 import retrofit2.Call
@@ -17,12 +17,12 @@ import retrofit2.Response
 /**
  * Created by liuxi on 2017/12/26.
  */
-class DailyListActivity : BaseActivity() {
+class ZhihuThemeChildActivity : BaseActivity() {
 
     var adapter: SlimAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_daily_list)
+        setContentView(R.layout.activity_zhihu_theme_child)
         var title = intent.getStringExtra("title")
         toolbar.setTitle(title)
         setSupportActionBar(toolbar)
@@ -36,7 +36,6 @@ class DailyListActivity : BaseActivity() {
         swipeRefresh.setOnRefreshListener { loadData() }
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = SlimAdapter.create().register(R.layout.item_zhihu_theme, ThemeListInjector(this)).attachTo(recyclerView)
-
     }
 
     private fun loadData() {
@@ -47,7 +46,6 @@ class DailyListActivity : BaseActivity() {
                 swipeRefresh.isRefreshing = false
                 Logger.log("get daily failed")
             }
-
             override fun onResponse(call: Call<ThemeChildList>?, response: Response<ThemeChildList>?) {
                 Logger.log("get daily sucess")
                 adapter!!.updateData(response!!.body().stories)

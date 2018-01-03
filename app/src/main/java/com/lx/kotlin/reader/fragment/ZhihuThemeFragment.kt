@@ -4,7 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.lx.kotlin.reader.activity.DailyListActivity
+import com.lx.kotlin.reader.R
+import com.lx.kotlin.reader.activity.ZhihuThemeChildActivity
 import com.lx.kotlin.reader.adapter.ZhiHuThemeAdapter
 import com.lx.kotlin.reader.model.bean.ThemeList
 import com.lx.kotlin.reader.model.service.ServiceFactory
@@ -23,14 +24,10 @@ class ZhihuThemeFragment : RecyclerFragment<ThemeList.OthersInfo>() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         canLoadMore = false
-        loadData()
+        refreshLoad()
     }
     override fun createAdapter(): MultiItemTypeAdapter<ThemeList.OthersInfo> {
         return ZhiHuThemeAdapter(context,data)
-    }
-
-    override fun createLayoutManager(): RecyclerView.LayoutManager? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun loadData() {
@@ -53,11 +50,13 @@ class ZhihuThemeFragment : RecyclerFragment<ThemeList.OthersInfo>() {
 
     override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
         var data = data?.get(position)
-        var intent= Intent().setClass(context, DailyListActivity::class.java)
+        var intent= Intent().setClass(context, ZhihuThemeChildActivity::class.java)
         intent.putExtra("title",data!!.name)
                 .putExtra("id",data!!.id)
         context.startActivity(intent)
     }
 
-
+    override fun createLoadMoreViewId(): Int {
+        return R.layout.load_more_view
+    }
 }
