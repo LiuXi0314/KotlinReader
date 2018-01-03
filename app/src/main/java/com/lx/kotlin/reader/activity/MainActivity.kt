@@ -24,11 +24,11 @@ class MainActivity : BaseActivity() {
         toolbar.setTitle(R.string.app_name)
         pageList.clear()
 
-        var zhihuDaily = ZhihuDailyFragment()
-        var zhihuDailyBundle = Bundle()
-        zhihuDailyBundle.putString("title", "知乎日报")
-        zhihuDaily.arguments = zhihuDailyBundle
-        pageList.add(zhihuDaily)
+//        var zhihuDaily = ZhihuDailyFragment()
+//        var zhihuDailyBundle = Bundle()
+//        zhihuDailyBundle.putString("title", "知乎日报")
+//        zhihuDaily.arguments = zhihuDailyBundle
+//        pageList.add(zhihuDaily)
 
         var zhihu = ZhihuThemeFragment()
         var zhihuBundle = Bundle()

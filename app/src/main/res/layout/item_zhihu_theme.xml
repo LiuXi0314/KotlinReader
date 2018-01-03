@@ -8,7 +8,7 @@
               android:layout_marginTop="@dimen/spacingNormal"
               android:background="@color/colorWhite"
               android:elevation="@dimen/spacingXSmall"
-              android:orientation="horizontal"
+              android:orientation="vertical"
               android:padding="@dimen/spacingNormal">
 
     <TextView

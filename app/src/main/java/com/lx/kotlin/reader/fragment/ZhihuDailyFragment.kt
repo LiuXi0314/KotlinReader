@@ -14,7 +14,7 @@ import retrofit2.Response
 /**
  * Created on 17-12-4 下午2:42
  */
-class ZhihuDailyFragment : RecyclerFragment() {
+class ZhihuDailyFragment{
 //    override fun loadData() {
 //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 //    }

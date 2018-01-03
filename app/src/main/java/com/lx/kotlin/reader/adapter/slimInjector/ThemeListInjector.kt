@@ -17,7 +17,7 @@ class ThemeListInjector(private var context: Context) : SlimInjector<StoriesInfo
     override fun onInject(data: StoriesInfo?, injector: IViewInjector<out IViewInjector<*>>?) {
         Logger.log(data.toString())
         injector!!.text(R.id.name, data!!.title)
-        Glide.with(context).load(data.images?.first()).crossFade().into(injector.findViewById(R.id.image))
+//        Glide.with(context).load(data.images?.first()).crossFade().into(injector.findViewById(R.id.image))
 
         injector.clicked(R.id.itemContent,{
             var intent = Intent().setClass(context, NewsActivity::class.java)
