@@ -1,11 +1,13 @@
 package com.lx.kotlin.reader.model.api
 
-import com.lx.kotlin.reader.model.bean.ThemeChildList
+import com.lx.kotlin.reader.model.bean.DailyLatest
 import com.lx.kotlin.reader.model.bean.News
+import com.lx.kotlin.reader.model.bean.ThemeChildList
 import com.lx.kotlin.reader.model.bean.ThemeList
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import rx.Observable
 
 
 /**
@@ -21,11 +23,14 @@ interface ZhihuApi {
     fun getZhihuThemeDetail(@Path("id") id: Int): Call<ThemeChildList>
 
     @GET("api/4/news/{id}")
-    fun getZhihuNews(@Path("id")id:Int):Call<News>
-
-    //使用RxJava方式返回数据
+    fun getZhihuNews(@Path("id") id: Int): Call<News>
 
 
+    /**
+     * 使用RxJava方式返回数据
+     */
+    @GET("api/4/news/latest")
+    fun getDailyLatest(): Observable<DailyLatest>
 
 
 }

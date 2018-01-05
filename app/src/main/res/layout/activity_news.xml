@@ -8,6 +8,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
+        android:elevation="@dimen/spacingSmall"
         android:layout_height="?actionBarSize"
         android:background="@color/colorWhite">
 
@@ -16,7 +17,6 @@
     <WebView
         android:id="@+id/webView"
         style="@style/TextStyle.Black"
-        android:padding="@dimen/spacingLarge"
         android:lineSpacingMultiplier="1.2"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

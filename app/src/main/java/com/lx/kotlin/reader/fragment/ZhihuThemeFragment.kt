@@ -4,14 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.lx.kotlin.reader.R
 import com.lx.kotlin.reader.activity.ZhihuThemeChildActivity
 import com.lx.kotlin.reader.adapter.ZhiHuThemeAdapter
 import com.lx.kotlin.reader.model.bean.ThemeList
 import com.lx.kotlin.reader.model.service.ServiceFactory
 import com.lx.kotlin.reader.utils.Logger
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
-import kotlinx.android.synthetic.main.fragment_recycler.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,8 +21,7 @@ class ZhihuThemeFragment : RecyclerFragment<ThemeList.OthersInfo>() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        canLoadMore = false
-        refreshLoad()
+        refreshing()
     }
     override fun createAdapter(): MultiItemTypeAdapter<ThemeList.OthersInfo> {
         return ZhiHuThemeAdapter(context,data)
@@ -32,18 +29,21 @@ class ZhihuThemeFragment : RecyclerFragment<ThemeList.OthersInfo>() {
 
     override fun loadData() {
         Logger.log("请求数据")
+        isLoading = true
         var api = ServiceFactory.getZhihuService()
         api.getZhihuTheme().enqueue(object : Callback<ThemeList> {
             override fun onFailure(call: Call<ThemeList>?, t: Throwable?) {
-                Logger.log("failure")
+                Logger.log("load theme failure")
                 Logger.log(t.toString())
-                swipeRefresh.isRefreshing = false
+                closeRefresh()
+                isLoading = false
             }
             override fun onResponse(call: Call<ThemeList>?, response: Response<ThemeList>?) {
-                swipeRefresh.isRefreshing = false
-                Logger.log("success"+  response!!.body()!!.toString())
-                update(response.body().others!!)
-                Logger.log("success")
+                closeRefresh()
+                Logger.log("load theme success")
+                isLoading = false
+                update(response!!.body().others!!)
+                loadFinish()
             }
         })
     }
@@ -54,9 +54,5 @@ class ZhihuThemeFragment : RecyclerFragment<ThemeList.OthersInfo>() {
         intent.putExtra("title",data!!.name)
                 .putExtra("id",data!!.id)
         context.startActivity(intent)
-    }
-
-    override fun createLoadMoreViewId(): Int {
-        return R.layout.load_more_view
     }
 }

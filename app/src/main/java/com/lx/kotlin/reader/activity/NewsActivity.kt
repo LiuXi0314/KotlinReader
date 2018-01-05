@@ -21,9 +21,8 @@ class NewsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
-        var title = intent.getStringExtra("title")
-        toolbar.setTitle(title)
-        setSupportActionBar(toolbar)
+//        var title = intent.getStringExtra("title")
+//        toolbar.setTitle(title)
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_36dp)
         toolbar.setNavigationOnClickListener { finish() }
         loadData()
@@ -34,13 +33,12 @@ class NewsActivity : BaseActivity() {
         var api = ServiceFactory.getZhihuService()
         api.getZhihuNews(id).enqueue(object : Callback<News> {
             override fun onFailure(call: Call<News>?, t: Throwable?) {
-                Logger.log("get news failed")
+                Logger.log("load news failed")
             }
 
             override fun onResponse(call: Call<News>?, response: Response<News>?) {
-                Logger.log("get news sucess")
+                Logger.log("load news sucess")
                 var news = response!!.body()
-                toolbar.setTitle(news!!.title)
                 webView.loadData(HtmlUtils.structHtml(news?.body.toString(), news.css!!), "text/html; charset=UTF-8", null)
             }
         })

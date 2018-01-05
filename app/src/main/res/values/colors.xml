@@ -19,4 +19,12 @@
     <color name="colorOrange">#f17c67</color>
     <color name="colorGreen">#376956</color>
     <color name="colorBlueGreen">#c7FFEC</color>
+
+    <!--swipe refresh color-->
+    <color name="colorRefresh1">#E72100</color>
+    <color name="colorRefresh2">#454857</color>
+    <color name="colorRefresh3">#FFA021</color>
+    <color name="colorRefresh4">#F0D4AD</color>
+    <color name="colorRefresh5">#48A3A2</color>
+
 </resources>

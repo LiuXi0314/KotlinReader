@@ -9,7 +9,7 @@ class ThemeList {
 
     var others: MutableList<OthersInfo>? = null
 
-   open class OthersInfo {
+    open class OthersInfo {
         var color: Int = 0
         var thumbnail: String? = null
         var description: String? = null

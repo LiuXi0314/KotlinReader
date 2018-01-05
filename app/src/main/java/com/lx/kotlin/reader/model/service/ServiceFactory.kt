@@ -5,6 +5,7 @@ import com.lx.kotlin.reader.model.api.ZhihuApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
@@ -21,11 +22,11 @@ object ServiceFactory {
     fun getZhihuService():ZhihuApi{
         return Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())//支持RxJava
                 .baseUrl(ApiConstance.HEADER_ZHIHU)
                 .client(getClient())
                 .build()
                 .create(ZhihuApi::class.java)
     }
-
 
 }

@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
-    var pageList: MutableList<BaseFragment> = ArrayList()
+    private var pageList: MutableList<BaseFragment> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,22 +20,21 @@ class MainActivity : BaseActivity() {
         initView()
     }
 
-    fun initView() {
+    private fun initView() {
         toolbar.setTitle(R.string.app_name)
         pageList.clear()
 
-//        var zhihuDaily = ZhihuDailyFragment()
-//        var zhihuDailyBundle = Bundle()
-//        zhihuDailyBundle.putString("title", "知乎日报")
-//        zhihuDaily.arguments = zhihuDailyBundle
-//        pageList.add(zhihuDaily)
+        var zhihuDaily = ZhihuDailyFragment()
+        var zhihuDailyBundle = Bundle()
+        zhihuDailyBundle.putString("title", getString(R.string.zhihu_daily))
+        zhihuDaily.arguments = zhihuDailyBundle
+        pageList.add(zhihuDaily)
 
         var zhihu = ZhihuThemeFragment()
         var zhihuBundle = Bundle()
-        zhihuBundle.putString("title", "知乎主题")
+        zhihuBundle.putString("title", getString(R.string.zhihu_theme))
         zhihu.arguments = zhihuBundle
         pageList.add(zhihu)
-
 
 
         var one = DoubanFragment()
