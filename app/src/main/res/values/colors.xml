@@ -4,7 +4,8 @@
     <color name="colorPrimary">@color/colorWhite</color>
     <color name="colorPrimaryDark">@color/colorWhite</color>
     <color name="colorAccent">@color/colorBlack</color>
-    <color name="colorBg">#eeeeee</color>
+    <color name="colorBg">#ebedf4</color>
+    <color name="colorBgDark">#eeeeee</color>
 
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>

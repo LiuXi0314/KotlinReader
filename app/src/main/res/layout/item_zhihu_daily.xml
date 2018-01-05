@@ -3,11 +3,8 @@
               android:id="@+id/itemContent"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:layout_marginLeft="@dimen/spacingNormal"
-              android:layout_marginRight="@dimen/spacingNormal"
-              android:layout_marginTop="@dimen/spacingNormal"
               android:background="@color/colorWhite"
-              android:elevation="@dimen/spacingXSmall"
+              android:elevation="1px"
               android:orientation="horizontal"
               android:padding="@dimen/spacingNormal">
 
@@ -18,7 +15,7 @@
 
     <TextView
         android:id="@+id/name"
-        style="@style/TextStyle.Black.Large"
+        style="@style/TextStyle.Black"
         android:layout_marginLeft="@dimen/spacingLarge"
         android:ellipsize="end"
         android:lineSpacingMultiplier="1.3"

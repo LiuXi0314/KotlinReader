@@ -120,6 +120,6 @@ class ZhihuDailyFragment : RecyclerFragment<StoriesInfo>() {
     }
 
     override fun createItemDecoration(): RecyclerView.ItemDecoration? {
-        return ItemTopDecoration(context, topList, Formatter.dip2px(context,25.toFloat()).toFloat())
+        return ItemTopDecoration(context, topList)
     }
 }
