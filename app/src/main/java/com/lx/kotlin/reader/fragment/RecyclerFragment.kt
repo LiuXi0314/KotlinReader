@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.lx.kotlin.reader.R
+import com.lx.kotlin.reader.utils.Logger
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
 import com.zhy.adapter.recyclerview.wrapper.HeaderAndFooterWrapper
 import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper
@@ -17,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_recycler.*
  * 简单封装的列表Fragment
  * Created on 17-12-22 下午1:49
  */
-abstract class RecyclerFragment<T> : BaseFragment(), View.OnClickListener, MultiItemTypeAdapter.OnItemClickListener {
+abstract class RecyclerFragment<T> : BaseFragment(), MultiItemTypeAdapter.OnItemClickListener {
 
     var adapter: MultiItemTypeAdapter<T>? = null
     private var headerAndFooterWrapper: HeaderAndFooterWrapper<T>? = null
@@ -25,7 +26,7 @@ abstract class RecyclerFragment<T> : BaseFragment(), View.OnClickListener, Multi
     var data: MutableList<T>? = null
     var canLoadMore: Boolean = false //控制是否可以加载更多
     var isLoading: Boolean = false //判断是否正在加载中
-    var footView: TextView? = null
+    var loadMoreView: TextView? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(R.layout.fragment_recycler, container, false)!!
@@ -41,49 +42,60 @@ abstract class RecyclerFragment<T> : BaseFragment(), View.OnClickListener, Multi
         adapter = createAdapter()
         adapter?.setOnItemClickListener(this)
         headerAndFooterWrapper = HeaderAndFooterWrapper(adapter)
-        footView = LayoutInflater.from(context).inflate(R.layout.load_more_view, null) as TextView?
-        footView!!.layoutParams = ViewGroup.LayoutParams(-1,-2)
-        hiddenFootView()
-        headerAndFooterWrapper!!.addFootView(footView)
+        loadMoreView = LayoutInflater.from(context).inflate(R.layout.load_more_view, null) as TextView?
+        loadMoreView!!.layoutParams = ViewGroup.LayoutParams(-1, -2)
+        hiddenloadMoreView()
         loadMoreWrapper = LoadMoreWrapper(headerAndFooterWrapper)
         loadMoreWrapper!!.setOnLoadMoreListener {
             if (!isLoading && canLoadMore) {
+                Logger.log("加载更多")
                 loadMore()
             }
         }
+        
+        loadMoreWrapper!!.setLoadMoreView(loadMoreView)
 
         recyclerView.adapter = loadMoreWrapper
 
-        swipeRefresh.setOnRefreshListener { loadData() }
+        swipeRefresh.setOnRefreshListener {
+            canLoadMore = true
+            loadData()
+        }
         swipeRefresh.setColorSchemeResources(R.color.colorRefresh1,
                 R.color.colorRefresh2, R.color.colorRefresh3,
                 R.color.colorRefresh4, R.color.colorRefresh5)
     }
 
+    abstract fun loadData()
+
+    abstract fun createAdapter(): MultiItemTypeAdapter<T>
+
     open fun createLayoutManager(): RecyclerView.LayoutManager? {
         return null
     }
 
-    abstract fun createAdapter(): MultiItemTypeAdapter<T>
-
-    abstract fun loadData()
-
     open fun loadMore() {
         if (isLoading) return
         isLoading = true
-        footView!!.layoutParams.height = -2
-        footView!!.text = "加载中..."
+        loadMoreView!!.layoutParams.height = -2
+        loadMoreView!!.text = "加载中..."
 
     }
 
-    fun hiddenFootView() {
-        footView!!.layoutParams.height = 0
+    fun hiddenloadMoreView() {
+        loadMoreView!!.layoutParams.height = 0
+    }
+
+    fun loadMoreFinish(){
+        isLoading = false
+        hiddenloadMoreView()
     }
 
     open fun loadFinish() {
-        footView!!.layoutParams.height = -2
-        footView!!.text = "——我也是有底线的——"
-
+        isLoading = false
+        canLoadMore = false
+        loadMoreView!!.layoutParams.height = -2
+        loadMoreView!!.text = "——我也是有底线的——"
     }
 
     fun refreshing() {
@@ -93,17 +105,8 @@ abstract class RecyclerFragment<T> : BaseFragment(), View.OnClickListener, Multi
         }
     }
 
-
     fun closeRefresh() {
         swipeRefresh.isRefreshing = false
-    }
-
-    override fun onClick(v: View?) {
-    }
-
-    fun notifyDataChanged() {
-        loadMoreWrapper?.notifyDataSetChanged()
-        adapter?.notifyDataSetChanged()
     }
 
     /**
@@ -121,7 +124,8 @@ abstract class RecyclerFragment<T> : BaseFragment(), View.OnClickListener, Multi
         for (item in list) {
             data!!.add(item)
         }
-        notifyDataChanged()
+        loadMoreWrapper?.notifyDataSetChanged()
+        adapter?.notifyDataSetChanged()
     }
 
     override fun onItemLongClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int): Boolean {

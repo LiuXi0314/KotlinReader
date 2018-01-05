@@ -6,7 +6,7 @@ package com.lx.kotlin.reader.model.bean
  * Created on 18-1-5 上午9:59
  */
 
-class DailyLatest {
+class DailyInfo {
 
     /**
      * date : 20180105

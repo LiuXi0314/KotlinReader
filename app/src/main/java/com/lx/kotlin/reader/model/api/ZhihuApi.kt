@@ -1,6 +1,6 @@
 package com.lx.kotlin.reader.model.api
 
-import com.lx.kotlin.reader.model.bean.DailyLatest
+import com.lx.kotlin.reader.model.bean.DailyInfo
 import com.lx.kotlin.reader.model.bean.News
 import com.lx.kotlin.reader.model.bean.ThemeChildList
 import com.lx.kotlin.reader.model.bean.ThemeList
@@ -30,7 +30,9 @@ interface ZhihuApi {
      * 使用RxJava方式返回数据
      */
     @GET("api/4/news/latest")
-    fun getDailyLatest(): Observable<DailyLatest>
+    fun getDailyLatest(): Observable<DailyInfo>
 
 
+    @GET("api/4/news/before/{date}")
+    fun getDailyBefore(@Path("date") date: String): Observable<DailyInfo>
 }

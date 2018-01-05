@@ -7,9 +7,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.lx.kotlin.reader.activity.NewsActivity
 import com.lx.kotlin.reader.adapter.ZhihuDailyAdapter
-import com.lx.kotlin.reader.model.bean.DailyLatest
+import com.lx.kotlin.reader.model.bean.DailyInfo
 import com.lx.kotlin.reader.model.bean.StoriesInfo
 import com.lx.kotlin.reader.model.service.ServiceFactory
+import com.lx.kotlin.reader.utils.Formatter
 import com.lx.kotlin.reader.utils.Logger
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
 import rx.Subscriber
@@ -23,40 +24,45 @@ import rx.schedulers.Schedulers
  */
 class ZhihuDailyFragment : RecyclerFragment<StoriesInfo>() {
 
-    override fun createAdapter(): MultiItemTypeAdapter<StoriesInfo> {
-        return ZhihuDailyAdapter(context,data)
+    var lastDate: String? = ""
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        refreshing()
     }
 
     override fun loadData() {
+        isLoading = true
         Logger.log("请求知乎日报")
         ServiceFactory.getZhihuService()
                 .getDailyLatest()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object :Subscriber<DailyLatest>(){
+                .subscribe(object : Subscriber<DailyInfo>() {
 
                     override fun onError(e: Throwable?) {
                         closeRefresh()
+                        isLoading = false
                     }
 
                     override fun onCompleted() {
                         closeRefresh()
+                        isLoading = false
+                        canLoadMore = true
                     }
 
-                    override fun onNext(t: DailyLatest?) {
+                    override fun onNext(t: DailyInfo?) {
+                        lastDate = t?.date
                         update(t!!.stories!!)
                     }
-
 
                 })
 
 
-
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        refreshing()
+    override fun createAdapter(): MultiItemTypeAdapter<StoriesInfo> {
+        return ZhihuDailyAdapter(context, data)
     }
 
     override fun createLayoutManager(): RecyclerView.LayoutManager? {
@@ -65,17 +71,40 @@ class ZhihuDailyFragment : RecyclerFragment<StoriesInfo>() {
 
     override fun loadMore() {
         super.loadMore()
-    }
+        if (Formatter.isEmpty(lastDate)) {
+            loadFinish()
+            return
+        }
+        isLoading = true
+        ServiceFactory.getZhihuService()
+                .getDailyBefore(lastDate!!)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : Subscriber<DailyInfo>() {
 
-    override fun onClick(v: View?) {
-        super.onClick(v)
+                    override fun onError(e: Throwable?) {
+                        Logger.log(e.toString())
+                        loadMoreFinish()
+                    }
+
+                    override fun onCompleted() {
+                        loadMoreFinish()
+                    }
+
+                    override fun onNext(t: DailyInfo?) {
+                        if (t == null) loadFinish()
+                        lastDate = t?.date
+                        add(t!!.stories!!)
+                    }
+                })
     }
 
     override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
         super.onItemClick(view, holder, position)
         var data = data?.get(position)
         var intent = Intent().setClass(context, NewsActivity::class.java)
-        intent.putExtra("title",data?.title).putExtra("id",data?.id)
+        intent.putExtra("title", data?.title).putExtra("id", data?.id)
         context.startActivity(intent)
     }
+
 }
