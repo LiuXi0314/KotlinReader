@@ -78,7 +78,7 @@ class ItemTopDecoration(val context: Context, val data: MutableList<ItemDecData>
                 var str = getText(index)
                 paint.getTextBounds(str, 0, str.length, Rect())
                 val fontMetrics = paint.getFontMetricsInt()
-                val baseline =bottom- (topHeight - fontMetrics.bottom + fontMetrics.top) / 2
+                val baseline =bottom- (topHeight - fontMetrics.bottom + fontMetrics.top)
                 c.drawText(getText(index), left + 20, baseline, paint)
             }
         }
