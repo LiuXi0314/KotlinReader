@@ -38,6 +38,10 @@ abstract class RecyclerFragment<T> : BaseFragment(), MultiItemTypeAdapter.OnItem
         if (recyclerView.layoutManager == null) {
             recyclerView.layoutManager = LinearLayoutManager(context)
         }
+        var itemDec = createItemDecoration()
+        if(itemDec != null){
+            recyclerView.addItemDecoration(itemDec)
+        }
         data = ArrayList()
         adapter = createAdapter()
         adapter?.setOnItemClickListener(this)
@@ -71,6 +75,10 @@ abstract class RecyclerFragment<T> : BaseFragment(), MultiItemTypeAdapter.OnItem
     abstract fun createAdapter(): MultiItemTypeAdapter<T>
 
     open fun createLayoutManager(): RecyclerView.LayoutManager? {
+        return null
+    }
+
+    open fun createItemDecoration():RecyclerView.ItemDecoration?{
         return null
     }
 

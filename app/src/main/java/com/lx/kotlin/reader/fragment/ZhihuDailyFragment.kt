@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.lx.kotlin.reader.activity.NewsActivity
 import com.lx.kotlin.reader.adapter.ZhihuDailyAdapter
+import com.lx.kotlin.reader.adapter.help.ItemDecData
+import com.lx.kotlin.reader.adapter.help.ItemTopDecoration
 import com.lx.kotlin.reader.model.bean.DailyInfo
 import com.lx.kotlin.reader.model.bean.StoriesInfo
 import com.lx.kotlin.reader.model.service.ServiceFactory
@@ -18,13 +20,13 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
 /**
- *
  * 知乎日报列表
  * Created on 17-12-4 下午2:42
  */
 class ZhihuDailyFragment : RecyclerFragment<StoriesInfo>() {
 
     var lastDate: String? = ""
+    val topList: MutableList<ItemDecData> = ArrayList()
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,12 +55,20 @@ class ZhihuDailyFragment : RecyclerFragment<StoriesInfo>() {
 
                     override fun onNext(t: DailyInfo?) {
                         lastDate = t?.date
+                        addTopData()
                         update(t!!.stories!!)
+
                     }
 
                 })
 
 
+    }
+
+    private fun addTopData() {
+        var pos = data!!.size
+        var itemDecData = ItemDecData(pos, lastDate!!)
+        topList.add(itemDecData)
     }
 
     override fun createAdapter(): MultiItemTypeAdapter<StoriesInfo> {
@@ -94,9 +104,11 @@ class ZhihuDailyFragment : RecyclerFragment<StoriesInfo>() {
                     override fun onNext(t: DailyInfo?) {
                         if (t == null) loadFinish()
                         lastDate = t?.date
+                        addTopData()
                         add(t!!.stories!!)
                     }
                 })
+
     }
 
     override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
@@ -107,4 +119,7 @@ class ZhihuDailyFragment : RecyclerFragment<StoriesInfo>() {
         context.startActivity(intent)
     }
 
+    override fun createItemDecoration(): RecyclerView.ItemDecoration? {
+        return ItemTopDecoration(context, topList, Formatter.dip2px(context,25.toFloat()).toFloat())
+    }
 }
