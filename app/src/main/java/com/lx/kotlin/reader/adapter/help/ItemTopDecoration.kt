@@ -25,9 +25,9 @@ class ItemTopDecoration(val context: Context, val data: MutableList<ItemDecData>
 
     init {
         val paint = Paint()
-        paint.setTextSize(Formatter.sp2px(context, 14.toFloat()).toFloat())
+        paint.textSize = Formatter.sp2px(context, 14.toFloat()).toFloat()
         paint.getTextBounds("test", 0, 4, Rect())
-        val fontMetrics = paint.getFontMetricsInt()
+        val fontMetrics = paint.fontMetricsInt
         var absHeight = Math.abs(fontMetrics.top - fontMetrics.bottom)
         topHeight = (absHeight + 20).toFloat()
     }
@@ -35,10 +35,10 @@ class ItemTopDecoration(val context: Context, val data: MutableList<ItemDecData>
     override fun onDraw(c: Canvas?, parent: RecyclerView?, state: RecyclerView.State?) {
         super.onDraw(c, parent, state)
         // 得到item真实的left和right（减去parent的padding）
-        val left = parent!!.getPaddingLeft().toFloat()
-        val right = (parent.getWidth() - parent.getPaddingRight()).toFloat()
+        val left = parent!!.paddingLeft.toFloat()
+        val right = (parent.width - parent.paddingRight).toFloat()
 
-        for (i in 0 until parent.getChildCount()) {
+        for (i in 0 until parent.childCount) {
 
             // 直接获得的child只有当前显示的，所以就算i是0的index也只是当前第一个，而不是所有第一个
             val child = parent.getChildAt(i)
@@ -51,14 +51,14 @@ class ItemTopDecoration(val context: Context, val data: MutableList<ItemDecData>
             val bottom = child.top.toFloat() - spacing
             // 绘制背景色
             val paint = Paint()
-            paint.setColor(ContextCompat.getColor(context, R.color.colorRefresh2))
+            paint.color = ContextCompat.getColor(context, R.color.colorRefresh2)
 
             c!!.drawRect(left, top, right, bottom, paint)
             // 绘制组名
-            paint.setColor(ContextCompat.getColor(context, R.color.colorWhite))
-            paint.setTextSize(Formatter.sp2px(context, 12.toFloat()).toFloat())
-            paint.setTextAlign(Paint.Align.LEFT)
-            paint.setAntiAlias(true)
+            paint.color = ContextCompat.getColor(context, R.color.colorWhite)
+            paint.textSize = Formatter.sp2px(context, 12.toFloat()).toFloat()
+            paint.textAlign = Paint.Align.LEFT
+            paint.isAntiAlias = true
             var str = getText(index)
             paint.getTextBounds(str, 0, str.length, Rect())
             val fontMetrics = paint.getFontMetricsInt()
@@ -71,8 +71,8 @@ class ItemTopDecoration(val context: Context, val data: MutableList<ItemDecData>
     override fun onDrawOver(c: Canvas?, parent: RecyclerView?, state: RecyclerView.State?) {
         super.onDrawOver(c, parent, state)
         // 得到item真实的left和right（减去parent的padding）
-        val left = parent!!.getPaddingLeft().toFloat()
-        val right = (parent.getWidth() - parent.getPaddingRight()).toFloat()
+        val left = parent!!.paddingLeft.toFloat()
+        val right = (parent.width - parent.paddingRight).toFloat()
 
         var index  = (parent.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
         val child = parent.getChildAt(0)
@@ -89,18 +89,18 @@ class ItemTopDecoration(val context: Context, val data: MutableList<ItemDecData>
 
         // 绘制背景色
         val paint = Paint()
-        paint.setColor(ContextCompat.getColor(context, R.color.colorRefresh2))
+        paint.color = ContextCompat.getColor(context, R.color.colorRefresh2)
 
         c!!.drawRect(left, top, right, bottom, paint)
         // 绘制组名
-        paint.setColor(ContextCompat.getColor(context, R.color.colorWhite))
-        paint.setTextSize(Formatter.sp2px(context, 12.toFloat()).toFloat())
-        paint.setTextAlign(Paint.Align.LEFT)
-        paint.setAntiAlias(true)
+        paint.color = ContextCompat.getColor(context, R.color.colorWhite)
+        paint.textSize = Formatter.sp2px(context, 12.toFloat()).toFloat()
+        paint.textAlign = Paint.Align.LEFT
+        paint.isAntiAlias = true
         var text = getText(index)
         Logger.log(text)
         paint.getTextBounds(text, 0, text.length, Rect())
-        val fontMetrics = paint.getFontMetricsInt()
+        val fontMetrics = paint.fontMetricsInt
         val baseline = (bottom + top - fontMetrics.bottom - fontMetrics.top) / 2
         c.drawText(text, left + 20, baseline, paint)
 
