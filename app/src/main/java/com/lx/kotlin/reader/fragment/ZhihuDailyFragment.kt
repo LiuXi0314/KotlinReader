@@ -67,8 +67,20 @@ class ZhihuDailyFragment : RecyclerFragment<StoriesInfo>() {
 
     private fun addTopData() {
         var pos = data!!.size
-        if(pos < 0 ) pos = 0
-        var itemDecData = ItemDecData(pos, lastDate!!)
+        var date:String? = null
+        if (pos == 0) {
+            date = "今日热闻"
+        } else {
+            var buildStr = StringBuilder()
+            buildStr.append(lastDate!!.substring(0,4))
+            buildStr.append("年")
+            buildStr.append(lastDate!!.substring(4,6))
+            buildStr.append("月")
+            buildStr.append(lastDate!!.substring(6,8))
+            buildStr.append("日")
+            date = buildStr.toString()
+        }
+        var itemDecData = ItemDecData(pos, date!!)
         topList.add(itemDecData)
     }
 
