@@ -67,6 +67,7 @@ class ZhihuDailyFragment : RecyclerFragment<StoriesInfo>() {
 
     private fun addTopData() {
         var pos = data!!.size
+        if(pos < 0 ) pos = 0
         var itemDecData = ItemDecData(pos, lastDate!!)
         topList.add(itemDecData)
     }

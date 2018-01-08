@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.lx.kotlin.reader.R
 import com.lx.kotlin.reader.utils.Formatter
-import com.lx.kotlin.reader.utils.Logger
 
 
 /**
@@ -63,7 +62,7 @@ class ItemTopDecoration(val context: Context, val data: MutableList<ItemDecData>
             paint.getTextBounds(str, 0, str.length, Rect())
             val fontMetrics = paint.getFontMetricsInt()
             val baseline = (bottom + top - fontMetrics.bottom - fontMetrics.top) / 2
-            c.drawText(getText(index), left + 20, baseline, paint)
+            c.drawText(str, left + 20, baseline, paint)
         }
     }
 
@@ -98,7 +97,6 @@ class ItemTopDecoration(val context: Context, val data: MutableList<ItemDecData>
         paint.textAlign = Paint.Align.LEFT
         paint.isAntiAlias = true
         var text = getText(index)
-        Logger.log(text)
         paint.getTextBounds(text, 0, text.length, Rect())
         val fontMetrics = paint.fontMetricsInt
         val baseline = (bottom + top - fontMetrics.bottom - fontMetrics.top) / 2
@@ -137,11 +135,15 @@ class ItemTopDecoration(val context: Context, val data: MutableList<ItemDecData>
 
     private fun getFirstId(pos: Int): Int {
         var lastData: ItemDecData? = null
+        var i = 0
         for (item in data) {
-            if (pos == item.pos)return item.pos
-
-            if (pos < item.pos) {
+            i++
+            if (pos == item.pos) {
+                return item.pos
+            }else if (pos < item.pos) {
                 return lastData!!.pos
+            } else if(i == data.size){
+                return item.pos
             }
 
             lastData = item
