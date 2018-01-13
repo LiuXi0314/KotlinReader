@@ -101,7 +101,7 @@ class GirlsFragment : RecyclerFragment<Girls.Girl>() {
         override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: RecyclerView.State?) {
             super.getItemOffsets(outRect, view, parent, state)
             outRect!!.bottom = Formatter.dip2px(context,6f)
-            outRect!!.left = Formatter.dip2px(context,2f)
+            outRect!!.left = Formatter.dip2px(context,3f)
             outRect!!.right = Formatter.dip2px(context,3f)
         }
 
