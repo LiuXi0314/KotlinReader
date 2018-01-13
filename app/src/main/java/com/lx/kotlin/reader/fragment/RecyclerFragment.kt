@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.lx.kotlin.reader.R
+import com.lx.kotlin.reader.model.bean.Girls
 import com.lx.kotlin.reader.utils.Logger
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
 import com.zhy.adapter.recyclerview.wrapper.HeaderAndFooterWrapper
@@ -131,9 +132,7 @@ abstract class RecyclerFragment<T> : BaseFragment(), MultiItemTypeAdapter.OnItem
      * 添加数据
      */
     fun add(list: MutableList<T>) {
-        for (item in list) {
-            data!!.add(item)
-        }
+        data!!.addAll(list.toMutableList())
         loadMoreWrapper?.notifyDataSetChanged()
         adapter?.notifyDataSetChanged()
     }
@@ -148,6 +147,8 @@ abstract class RecyclerFragment<T> : BaseFragment(), MultiItemTypeAdapter.OnItem
 
     override fun onDestroyView() {
         super.onDestroyView()
+        var s:List<Girls> = ArrayList()
+        var a:List<Girls> = ArrayList()
 
     }
 }
