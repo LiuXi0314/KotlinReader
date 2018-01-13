@@ -49,7 +49,7 @@ class MainActivity : BaseActivity() {
 
         var one = DoubanFragment()
         var oneBundle = Bundle()
-        oneBundle.putString("title", "豆瓣")
+        oneBundle.putString("title", getString(R.string.tab_gank_program))
         one.arguments = oneBundle
         pageList.add(one)
 
