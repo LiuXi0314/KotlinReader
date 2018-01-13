@@ -7,4 +7,7 @@ object ApiConstance {
     const val HEADER_ZHIHU = "https://news-at.zhihu.com/"
 
     const val BODY_ZHIHU_THEME = "api/4/themes"
+
+    const val HEADER_GANK = "http://gank.io/api/"
+
 }

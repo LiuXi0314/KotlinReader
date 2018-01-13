@@ -25,4 +25,11 @@ object Formatter {
         val scale = context.resources.displayMetrics.density
         return (dipValue * scale + 0.5f).toInt()
     }
+
+    fun formatImageUrl(url: String?): String {
+
+        if (url == null) return ""
+        var str = url + "?imageView2/0/w/500"
+        return url
+    }
 }

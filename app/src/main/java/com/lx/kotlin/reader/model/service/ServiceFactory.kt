@@ -1,6 +1,7 @@
 package com.lx.kotlin.reader.model.service
 
 import com.lx.kotlin.reader.model.api.ApiConstance
+import com.lx.kotlin.reader.model.api.GankApi
 import com.lx.kotlin.reader.model.api.ZhihuApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,6 +20,7 @@ object ServiceFactory {
         return  OkHttpClient.Builder().addNetworkInterceptor(interceptor).build()
     }
 
+
     fun getZhihuService():ZhihuApi{
         return Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
@@ -27,6 +29,17 @@ object ServiceFactory {
                 .client(getClient())
                 .build()
                 .create(ZhihuApi::class.java)
+    }
+
+
+    fun getGankService():GankApi{
+        return Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())//支持RxJava
+                .baseUrl(ApiConstance.HEADER_GANK)
+                .client(getClient())
+                .build()
+                .create(GankApi::class.java)
     }
 
 }

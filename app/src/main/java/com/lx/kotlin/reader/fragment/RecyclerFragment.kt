@@ -39,7 +39,7 @@ abstract class RecyclerFragment<T> : BaseFragment(), MultiItemTypeAdapter.OnItem
             recyclerView.layoutManager = LinearLayoutManager(context)
         }
         var itemDec = createItemDecoration()
-        if(itemDec != null){
+        if (itemDec != null) {
             recyclerView.addItemDecoration(itemDec)
         }
         data = ArrayList()
@@ -56,7 +56,7 @@ abstract class RecyclerFragment<T> : BaseFragment(), MultiItemTypeAdapter.OnItem
                 loadMore()
             }
         }
-        
+
         loadMoreWrapper!!.setLoadMoreView(loadMoreView)
 
         recyclerView.adapter = loadMoreWrapper
@@ -78,7 +78,7 @@ abstract class RecyclerFragment<T> : BaseFragment(), MultiItemTypeAdapter.OnItem
         return null
     }
 
-    open fun createItemDecoration():RecyclerView.ItemDecoration?{
+    open fun createItemDecoration(): RecyclerView.ItemDecoration? {
         return null
     }
 
@@ -94,7 +94,7 @@ abstract class RecyclerFragment<T> : BaseFragment(), MultiItemTypeAdapter.OnItem
         loadMoreView!!.layoutParams.height = 0
     }
 
-    fun loadMoreFinish(){
+    fun loadMoreFinish() {
         isLoading = false
         hiddenloadMoreView()
     }
@@ -107,6 +107,7 @@ abstract class RecyclerFragment<T> : BaseFragment(), MultiItemTypeAdapter.OnItem
     }
 
     fun refreshing() {
+        if (swipeRefresh == null) return
         swipeRefresh.post {
             swipeRefresh.isRefreshing = true
             loadData()
@@ -114,7 +115,8 @@ abstract class RecyclerFragment<T> : BaseFragment(), MultiItemTypeAdapter.OnItem
     }
 
     fun closeRefresh() {
-        swipeRefresh.isRefreshing = false
+        if (swipeRefresh != null)
+            swipeRefresh.isRefreshing = false
     }
 
     /**
@@ -144,5 +146,8 @@ abstract class RecyclerFragment<T> : BaseFragment(), MultiItemTypeAdapter.OnItem
 
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
 
+    }
 }

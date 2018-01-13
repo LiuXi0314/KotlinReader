@@ -26,7 +26,7 @@ import rx.schedulers.Schedulers
 class ZhihuDailyFragment : RecyclerFragment<StoriesInfo>() {
 
     var lastDate: String? = ""
-    val topList: MutableList<ItemDecData> = ArrayList()
+    private val topList: MutableList<ItemDecData> = ArrayList()
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -9,7 +9,9 @@ import com.bumptech.glide.Glide
  * Created on 18-1-5 上午11:14
  */
 object ImageUtils {
+
     fun load(context: Context?, view: ImageView?, imageUrl: String?) {
         Glide.with(context).load(imageUrl).crossFade().into(view)
     }
+
 }

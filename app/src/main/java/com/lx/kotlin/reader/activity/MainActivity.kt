@@ -26,15 +26,25 @@ class MainActivity : BaseActivity() {
 
         var zhihuDaily = ZhihuDailyFragment()
         var zhihuDailyBundle = Bundle()
-        zhihuDailyBundle.putString("title", getString(R.string.zhihu_daily))
+        zhihuDailyBundle.putString("title", getString(R.string.tab_zhihu_daily))
         zhihuDaily.arguments = zhihuDailyBundle
         pageList.add(zhihuDaily)
 
+
+
+        var image = GirlsFragment()
+        var imageBundle = Bundle()
+        imageBundle.putString("title", getString(R.string.tab_gank_girls))
+        image.arguments = imageBundle
+        pageList.add(image)
+
+
         var zhihu = ZhihuThemeFragment()
         var zhihuBundle = Bundle()
-        zhihuBundle.putString("title", getString(R.string.zhihu_theme))
+        zhihuBundle.putString("title", getString(R.string.tab_zhihu_theme))
         zhihu.arguments = zhihuBundle
         pageList.add(zhihu)
+
 
 
         var one = DoubanFragment()
@@ -43,11 +53,6 @@ class MainActivity : BaseActivity() {
         one.arguments = oneBundle
         pageList.add(one)
 
-        var image = ImageFragment()
-        var imageBundle = Bundle()
-        imageBundle.putString("title", "美图")
-        image.arguments = imageBundle
-        pageList.add(image)
         viewPager.adapter = FragmentAdapter(pageList, supportFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
     }
