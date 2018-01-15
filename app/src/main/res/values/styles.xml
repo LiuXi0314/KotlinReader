@@ -23,6 +23,11 @@
         <item name="android:textSize">@dimen/textLarge</item>
     </style>
 
+    <style name="TextStyle.Black.Small" parent="TextStyle.Black">
+        <item name="android:textColor">@color/colorTextBlack</item>
+        <item name="android:textSize">@dimen/textSmall</item>
+    </style>
+
     <style name="TextStyle.Gray" parent="TextStyle">
         <item name="android:textColor">@color/colorTextHint</item>
     </style>

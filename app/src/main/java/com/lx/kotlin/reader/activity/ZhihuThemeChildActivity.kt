@@ -24,7 +24,7 @@ class ZhihuThemeChildActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_zhihu_theme_child)
         var title = intent.getStringExtra("title")
-        toolbar.setTitle(title)
+        toolbar.title = title
         setSupportActionBar(toolbar)
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_36dp)
         toolbar.setNavigationOnClickListener { finish() }

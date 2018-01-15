@@ -31,6 +31,11 @@ class MainActivity : BaseActivity() {
         pageList.add(zhihuDaily)
 
 
+        var one = GankAndroidFragment()
+        var oneBundle = Bundle()
+        oneBundle.putString("title", getString(R.string.tab_gank_program).toLowerCase())
+        one.arguments = oneBundle
+        pageList.add(one)
 
         var image = GirlsFragment()
         var imageBundle = Bundle()
@@ -47,11 +52,6 @@ class MainActivity : BaseActivity() {
 
 
 
-        var one = DoubanFragment()
-        var oneBundle = Bundle()
-        oneBundle.putString("title", getString(R.string.tab_gank_program))
-        one.arguments = oneBundle
-        pageList.add(one)
 
         viewPager.adapter = FragmentAdapter(pageList, supportFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
