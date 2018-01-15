@@ -11,6 +11,7 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorGray">#eeeeee</color>
     <color name="colorTransparent">#00000000</color>
+    <color name="colorTranslucent">#cc000000</color>
 
 
     <color name="colorTextBlack">#212121</color>
@@ -27,5 +28,7 @@
     <color name="colorRefresh3">#FFA021</color>
     <color name="colorRefresh4">#F0D4AD</color>
     <color name="colorRefresh5">#48A3A2</color>
+
+    <color name="black_overlay">#66000000</color>
 
 </resources>

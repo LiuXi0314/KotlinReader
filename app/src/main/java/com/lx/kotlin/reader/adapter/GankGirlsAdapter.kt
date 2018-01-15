@@ -1,8 +1,10 @@
 package com.lx.kotlin.reader.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.widget.ImageView
 import com.lx.kotlin.reader.R
+import com.lx.kotlin.reader.activity.ImageActivity
 import com.lx.kotlin.reader.model.bean.Girls
 import com.lx.kotlin.reader.utils.DeviceUtils
 import com.lx.kotlin.reader.utils.Formatter
@@ -22,14 +24,20 @@ class GankGirlsAdapter(context: Context, data: MutableList<Girls.Girl>) : MultiI
 
 
     inner class ItemView(val context: Context) : ItemViewDelegate<Girls.Girl> {
-        private val imageWidth = (DeviceUtils.getWidth(context)-Formatter.dip2px(context,12f))/2
-        private val imageHeight = imageWidth*1.4
+        private val imageWidth = (DeviceUtils.getWidth(context) - Formatter.dip2px(context, 12f)) / 2
+        private val imageHeight = imageWidth * 1.4
         override fun convert(holder: ViewHolder?, t: Girls.Girl?, position: Int) {
             var image = holder!!.getView<ImageView>(R.id.itemImage)
-            image.measure(0,0)
+            image.measure(0, 0)
             image.layoutParams.width = imageWidth
             image.layoutParams.height = imageHeight.toInt()
             ImageUtils.load(context, image, Formatter.formatImageUrl(t?.url))
+
+            holder.convertView.setOnClickListener {
+                var intent = Intent(context, ImageActivity::class.java)
+                intent.putExtra("url", t?.url)
+                context.startActivity(intent)
+            }
         }
 
         override fun getItemViewLayoutId(): Int {

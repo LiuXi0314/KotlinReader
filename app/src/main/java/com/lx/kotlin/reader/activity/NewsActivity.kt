@@ -21,8 +21,7 @@ class NewsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
-//        var title = intent.getStringExtra("title")
-//        toolbar.setTitle(title)
+        toolbar.title =intent.getStringExtra("title")
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_36dp)
         toolbar.setNavigationOnClickListener { finish() }
         loadData()
@@ -39,6 +38,7 @@ class NewsActivity : BaseActivity() {
             override fun onResponse(call: Call<News>?, response: Response<News>?) {
                 Logger.log("load news sucess")
                 var news = response!!.body()
+                toolbar.title =news.title
                 webView.loadData(HtmlUtils.structHtml(news?.body.toString(), news.css!!), "text/html; charset=UTF-8", null)
             }
         })
