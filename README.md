@@ -11,8 +11,8 @@
 5. 其他使用过的第三方库：slimadapter
 
 ### APi:
-1.知乎日报开源API https://github.com/izzyleung/ZhihuDailyPurify/wiki/%E7%9F%A5%E4%B9%8E%E6%97%A5%E6%8A%A5-API-%E5%88%86%E6%9E%90
-2.干货集中营开源API http://gank.io/api
+1. 知乎日报开源API https://github.com/izzyleung/ZhihuDailyPurify/wiki/%E7%9F%A5%E4%B9%8E%E6%97%A5%E6%8A%A5-API-%E5%88%86%E6%9E%90
+2. 干货集中营开源API http://gank.io/api
 
 ![](https://github.com/LiuXi0314/KotlinReader/blob/master/pic/video.gif)
 ![](https://github.com/LiuXi0314/KotlinReader/blob/master/pic/Screenshot_1.jpg)
