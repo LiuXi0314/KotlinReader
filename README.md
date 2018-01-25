@@ -1,7 +1,6 @@
 # KotlinReader 一款基于Kotlin实现的阅读类app
 
-本项目是一款简易版阅读app，利用**Kotlin**语言实现。（个人学习练手项目）项目中有写的不到位的地方欢迎指正。
-
+本项目是一款简易版阅读app，使用**Kotlin**语言。个人学习练手项目，项目中有写的不到位的地方欢迎指正。
 
 ### 使用的技术：
 1. 网络请求：Retrofit2 + RxJava2;
@@ -15,8 +14,13 @@
 2. [干货集中营开源API](http://gank.io/api)
 
 ![](https://github.com/LiuXi0314/KotlinReader/blob/master/pic/video.gif)
+
 ![](https://github.com/LiuXi0314/KotlinReader/blob/master/pic/Screenshot_1.jpg)
+
 ![](https://github.com/LiuXi0314/KotlinReader/blob/master/pic/Screenshot_2.jpg)
+
 ![](https://github.com/LiuXi0314/KotlinReader/blob/master/pic/Screenshot_3.jpg)
+
 ![](https://github.com/LiuXi0314/KotlinReader/blob/master/pic/Screenshot_4.jpg)
+
 ![](https://github.com/LiuXi0314/KotlinReader/blob/master/pic/Screenshot_5.jpg)
